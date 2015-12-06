@@ -1,0 +1,49 @@
+<html>
+<head>
+<title> Details of the article :{{ single_art.title }}</title>
+<style type="text/css">
+body { color: #efd; background: #453; padding: 0 5em; margin: 0 }
+h1 { padding: 1em 1em; background: #675 }
+h2 { color: #bf8; }
+p { margin: 1em 0 }
+b { color:pink }
+caption { color:yellow;font-size:25 }
+</style>
+</head>
+<body>
+<center><h1> Article for {{ single_art.title }} </h1></center>
+<div style="float:left" >
+{% if lists %}
+<ul>
+{% for ar in lists %}
+<li><a href="{{ ar.id }}"><img src='{{ MEDIA_ROOT }}{{ ar.hero_image }}' alt='Image' height="80" width="80"/></a></li>
+<p style="color:yellow;font-size:15">{{ar.title}}</p>
+{% endfor %}
+</ul>
+{% else %}
+<p>{{ar.title}}</p>
+{% endif %}</div>
+<center><div style="float:center;height:700px">
+{% if single_art %}
+<p> <img src='{{ MEDIA_ROOT }}{{ single_art.hero_image }}' alt='image' height="390" width="290" /></p>
+<h2>Title : {{ single_art.title}} </h2>
+<p> <b>Author:</b>{{ single_art.author }}</p>
+<p> <b>Published Date:</b>{{ single_art.pub_date }}</p>
+<p> <b>Category:</b>{{ single_art.category }}</p>
+<p> <b>Body:</b>{{ single_art.body_text }}</p>
+{% endif %}</center>
+</div>
+<div style="float:right">
+<table align=right>
+<caption>What to read next ?? </caption>
+	<tr>
+	{% if lists %}
+	{% for al in lists %}
+		<td><a href="{{al.id}}"><img src='{{ al.hero_image }}' alt="image" height="80" width="180" /></a></td>
+	{% endfor %}
+	{% endif %}
+	</tr>
+	</table>
+</div>
+</body>
+</html>

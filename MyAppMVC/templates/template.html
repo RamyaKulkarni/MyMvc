@@ -1,0 +1,65 @@
+<html>
+<style type="text/css">
+body { color: #efd; background: #453; padding: 0 5em; margin: 0 }
+h1 { padding: 1em 1em; background: #675 }
+h2 { color: #bf8; margin-top: 2em }
+p { margin: 1em 0;color : yellow }
+caption { color : yellow; font-size :25 }
+#footer {
+clear:both;
+text-align:center;
+padding:5px;}
+</style>
+<body>
+<center><h1>Top list of Articles</h1></center>
+<div style="float:left">
+{% if list_art %}
+<ul>
+{% for ar in list_art %}
+<li><a href="{{ar.id}}"><img src='{{ MEDIA_URL }}{{ ar.hero_image }}' alt='Image' height="80" width="80"/></a></li>
+<p>{{ar.title}}</p>
+{% endfor %}
+</ul>
+{% else %}
+<p>{{ar.title}}</p>
+{% endif %}
+</div>
+<div style="float:left;margin:3em;padding:10px;width:720px;height:180px">
+{% if preview %}
+<h2 style="width:850px; border-bottom: 2px dotted #fff" > Preview of the Article </h2>
+<div style="float:right"><img src='{{ MEDIA_URL }}{{preview.hero_image }}' alt='Preview image' height="150" width="150"/></div>
+<h2>Title : {{ preview.title }} </h2>
+<h3> Author : {{ preview.author }} </h3>
+<h3> Category : {{ preview.category }} </h3>
+<h3> Body text : {{ preview.body_text }} </h3>
+<hr/>
+{% endif %}
+</div>
+<div style="margin:2em;float:left">
+{% if sample1 %}
+<h2><a href="{{ sample1.id }}" >{{ sample1.title }} </a></h2>
+<h3>Author: {{ sample1.author }}</h3>
+<h3>Category: {{ sample1.category }}</h3>
+{% endif %}
+{% if sample2 %}
+<h2><a href="{{ sample2.id }}" >{{ sample2.title }} </a></h2>
+<h3>Author: {{ sample2.author }}</h3>
+<h3>Category: {{ sample2.category }}</h3>
+{% endif %}
+</div>
+
+<div id="footer">
+<table align=right>
+<caption>What to read next ?? </caption>
+	<tr>
+	{% if list_art %}
+	{% for al in list_art %}
+		<td><a href="{{al.id}}"><img src='{{ al.hero_image }}' alt="image" height="80" width="180" /></a></td>
+	{% endfor %}
+	{% endif %}
+	</tr>
+	</table>
+</div>
+</body>
+</html>
+
